@@ -44,3 +44,15 @@ A pipeline can help to:
 - **Higher quality software**. By automating the build, test, and deployment processes, CI/CD helps to ensure that software is of high quality and free from bugs.
 - **Reduced costs**. By automating the software development process, CI/CD helps to reduce the costs associated with manual testing and deployment.
 - **Improved collaboration**. CI/CD encourages collaboration between developers, testers, and operations teams, which can help to improve communication and reduce errors.
+
+
+# Jenkins
+In Jenkins we can build, test and deploy software in a testing environment.
+
+![My Jenkins diagram](https://i.imgur.com/pO7TtlX.png)
+
+1. Go to Jenkins home and select *New Item*
+2. Give a name, select *Pipeline* and click ok
+3. Enter test code
+4. Select *Build Now* and wait for the build to start
+5. Select *Console output* to see if the code was successful
