@@ -17,6 +17,8 @@ Jenkins facilitates CI/CD by automating the above processes for software develop
 
 Jenkins has plugins that help it to integrate with software like GitHub and AWS.
 
+It is a self-contained Java program and can run on all main operating systems.
+
 ![Jenkins pipeline diagram](https://i.imgur.com/LayMK6i.png)
 
 
