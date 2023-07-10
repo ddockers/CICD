@@ -29,5 +29,16 @@ There are many tools available for CI/CD other than Jenkins. Some of the popular
 - **Bamboo**: A continuous integration server from Atlassian.
 
 ## Why build a pipeline?
+A pipeline can help to:
+
+- Automate the build process
+- Automate the testing process
+- Automate the deployment process
+- Ensure that each step in the process is completed successfully before moving on to the next step
+- Provide visibility into the status of each step in the process
 
 ## Business value?
+- **Faster time to market**. CI/CD helps to speed up the software development process, which means that new features and updates can be delivered to customers more quickly.
+- **Higher quality software**. By automating the build, test, and deployment processes, CI/CD helps to ensure that software is of high quality and free from bugs.
+- **Reduced costs**. By automating the software development process, CI/CD helps to reduce the costs associated with manual testing and deployment.
+- **Improved collaboration**. CI/CD encourages collaboration between developers, testers, and operations teams, which can help to improve communication and reduce errors.
