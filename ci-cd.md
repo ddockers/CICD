@@ -49,6 +49,12 @@ A pipeline can help to:
 # Jenkins
 In Jenkins we can build, test and deploy software in a testing environment.
 
+If the code doesn't execute, the developer can correct it before deployment.
+
+If the code does execute but there are bugs in testing, it can be sent back to the developer to correct. 
+
+If the code executes and it passes testing, it is ready to be deployed.
+
 ![My Jenkins diagram](https://i.imgur.com/pO7TtlX.png)
 
 1. Go to Jenkins home and select *New Item*
