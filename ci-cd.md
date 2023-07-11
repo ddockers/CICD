@@ -52,7 +52,9 @@ In Jenkins we can build, test and deploy software in a testing environment.
 ![My Jenkins diagram](https://i.imgur.com/pO7TtlX.png)
 
 1. Go to Jenkins home and select *New Item*
-2. Give a name, select *Pipeline* and click ok
-3. Enter test code
+2. Give a name, select *Freestyle project* and click ok
+3. Scroll to *Build* and select *Execute shell*. Enter test code, for example `uname -a`
+![Build shell](https://i.imgur.com/jsT1U8H.png)
+![Imgur](https://i.imgur.com/bmRt9Yv.png)
 4. Select *Build Now* and wait for the build to start
 5. Select *Console output* to see if the code was successful
