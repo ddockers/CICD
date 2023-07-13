@@ -93,4 +93,57 @@ If the code executes and it passes testing, it is ready to be deployed.
 ## Creating a Webhook
 Source: <https://www.blazemeter.com/blog/how-to-integrate-your-github-repository-to-your-jenkins-project>
 
-## 
+## CI Merge
+![Imgur](https://i.imgur.com/HkvaqRX.png)
+![Imgur](https://i.imgur.com/Vdqco1Y.png)
+
+## CD
+![CD build setup](https://i.imgur.com/5TSBMQ6.png)
+![Source code management](https://i.imgur.com/1H4VP6Y.png)
+![Execute shell](https://i.imgur.com/dGkvY2o.png)
+
+# Building a Jenkins Server on AWS
+1. Create EC2 instance with Ubuntu 18.04LTS
+2. Ensure rule is set up for TCP from port 8080
+![Imgur](https://i.imgur.com/NsHm8mL.png)
+3. SSH into EC2 and update
+```
+sudo apt update
+```
+4. Install required dependencies - Java 8 or above.
+Go to <https://pkg.jenkins.io/debian-stable/> to get the install packages.
+```
+curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee \
+    /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+```
+
+```
+echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+    https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+    /etc/apt/sources.list.d/jenkins.list > /dev/null
+```
+
+5. Install Jenkins
+
+
+```sudo apt-get update
+  sudo apt-get install fontconfig openjdk-11-jre
+  sudo apt-get install jenkins
+```
+6. Check to see if Java exists and if Jenkins is running
+```
+java -version
+
+sudo systemctl status jenkins
+```
+7. Start and enable Jenkins
+```
+sudo systemctl start jenkins
+sudo systemctl enable jenkins
+```
+8. Navigare to EC2 IP address at port 8080 and the Jenkins page should be displayed.
+9. Use `sudo cat` command to get the password
+10. Sign in and install the following plugins as well as the suggested ones:
+    - GitHub
+    - SSH Agent
+    - NodeJS
