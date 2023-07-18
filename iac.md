@@ -14,12 +14,16 @@ The xonfiguration files contain the infrastructure specifications, so it's easie
 
 ## IaC with Ansible
 1. Launch three EC2 instances
+   
 2. Label the instances - *controller*, *web-app* and *db*
+   
 3. `ssh` into each of the instances and update and upgrade to check that they can accept requests
+   
 4. In the controller, install dependencies
 ```
 sudo apt-get install software-properties-common
 ```
+
 5. Ansible then needs to be installed. One of Ansible's dependencies is Python. This does not need to be installed separately since Ubuntu already has Python installed
    1. Clone ansible from the ansible repo
    ```
@@ -43,20 +47,27 @@ cd /etc/ansible
 ```
 chmod 400 tech241.pem
 ```
+
 9. Make sure we can ssh into an agent node from the controller. **Use the `sudo` command**, then paste the path directly (without the need to add `~/.ssh/`).
+
 ![ssh into agent node](https://i.imgur.com/aNp2Mfk.png)
+
 Do this for both nodes (web app and db).
-10. If this all works, navigate to the default ansible directory.
+
+10.  If this all works, navigate to the default ansible directory.
 ```
 cd /etc/ansible
 ```
 Use `ls` to make sure the `hosts` file is there.
-11. Install tree package
+
+11.  Install tree package
 ```
 sudo apt install tree -y
 ```
 Run `tree` to make sure it's installed.
+
 ![Tree](https://i.imgur.com/dDOCKSO.png)
+
 
 12. We need to be able to communicate with the nodes. We can do this by adding the path in the `host` file. Run `sudo nano hosts` and enter the following command:
 ```
@@ -67,6 +78,7 @@ ec2-instance ansible_host=34.241.184.76 ansible_user=ubuntu ansible_ssh_private_
 We've created a group, rather than an individual IP. 
 We're using an EC2 instance, and the host of that instance is the IP address of the node (web app, in this case).
 The user is Ubuntu, and the private key file can be found in the path at the end.
+
 13. Ping.
 ```
 sudo ansible web -m ping
