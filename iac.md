@@ -74,14 +74,20 @@ Run `tree` to make sure it's installed.
 [web]
 ec2-instance ansible_host=34.241.184.76 ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/tech241.pem
 ```
-![Imgur](https://i.imgur.com/xkP3WhP.png)
+
 We've created a group, rather than an individual IP. 
 We're using an EC2 instance, and the host of that instance is the IP address of the node (web app, in this case).
-The user is Ubuntu, and the private key file can be found in the path at the end.
+The user is Ubuntu, and the private key file can be found in the path at the end. Add the same command for the db (sing the db's IP address)
 
-13. Ping.
+![nano web and db](https://i.imgur.com/8A3Mp5J.png)
+
+1.  Ping.
 ```
 sudo ansible web -m ping
 ```
+```
+sudo ansible db -m ping
+```
+
 I should get a pong in return...
-![Ping pong](https://i.imgur.com/SwFbtQS.png)
+![Ping Pong](https://i.imgur.com/VrGmsAs.png)
