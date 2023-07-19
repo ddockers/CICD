@@ -10,7 +10,7 @@ The xonfiguration files contain the infrastructure specifications, so it's easie
 - Ansible is cloud independant. You can orchestrate the entire application environment no matter where it’s deployed.
 - Ansible is agent-less. An Ansible controller can be created what can communicate with nodes that don't need to have Ansible installed.
 
-![Ansible architecture](https://i.imgur.com/tzLV6y4.png)
+![Ansible architecture](https://i.imgur.com/4N9fOtg.png)
 
 ## IaC with Ansible
 1. Launch three EC2 instances
@@ -140,3 +140,18 @@ Check nginx is running
 ```
 sudo ansible web -a "systemctl status nginx"
 ```
+## PLaybook for installing Nodejs
+`sudo nano nodejs.yml`
+```
+---
+- hosts: web
+  gather_facts: yes
+  become: true
+
+  tasks:
+  - name: Installing nodejs
+    apt: pkg=nodejs state=present
+  - name: Installing npm
+    apt: pkg=npm state=present
+```
+`sudo ansible-playbook nodejs.yml`
