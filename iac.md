@@ -10,7 +10,7 @@ The xonfiguration files contain the infrastructure specifications, so it's easie
 - Ansible is cloud independant. You can orchestrate the entire application environment no matter where it’s deployed.
 - Ansible is agent-less. An Ansible controller can be created what can communicate with nodes that don't need to have Ansible installed.
 
-![Sharukh's Ansible diagram](https://i.imgur.com/nPRKTRE.png)
+![Ansible architecture](https://i.imgur.com/tzLV6y4.png)
 
 ## IaC with Ansible
 1. Launch three EC2 instances
@@ -93,3 +93,39 @@ I should get a pong in return...
 ![Ping Pong](https://i.imgur.com/VrGmsAs.png)
 
 To ping all nodes, use `sudo ansible all -m ping`.
+
+## Ansible Playbook
+
+Web VM IP: 34.244.45.248
+
+DB VM IP: 3.253.143.243
+
+### Hosts file code
+```
+[web]
+ec2-instance ansible_host=34.244.45.248 ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/tech241.pem
+[db]
+ec2-instance ansible_host=3.253.143.243 ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/tech241.pem
+```
+### Playbook
+```
+# YAML files start with --- 3 dashes
+# Create a playbook to install nginx in web node
+
+# which host to perform the task
+---
+- hosts: web
+# see the logs by gathering facts
+  gather_facts: yes
+# admin access
+  become: true
+# add the instrutions - install nginx in web
+  tasks:
+    - name: Installing nginx
+      apt: pkg=nginx state=present
+# make sure status of nginx is actively running
+
+# ad hoc command to check the status
+```
+
+Nginx is running on DB VM, not app VM.
