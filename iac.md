@@ -91,3 +91,5 @@ sudo ansible db -m ping
 
 I should get a pong in return...
 ![Ping Pong](https://i.imgur.com/VrGmsAs.png)
+
+To ping all nodes, use `sudo ansible all -m ping`.
