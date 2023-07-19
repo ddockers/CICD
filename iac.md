@@ -72,14 +72,14 @@ Run `tree` to make sure it's installed.
 12. We need to be able to communicate with the nodes. We can do this by adding the path in the `host` file. Run `sudo nano hosts` and enter the following command:
 ```
 [web]
-ec2-instance ansible_host=34.241.184.76 ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/tech241.pem
+ec2-instance-web ansible_host=34.241.184.76 ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/tech241.pem
 ```
 
 We've created a group, rather than an individual IP. 
 We're using an EC2 instance, and the host of that instance is the IP address of the node (web app, in this case).
 The user is Ubuntu, and the private key file can be found in the path at the end. Add the same command for the db (sing the db's IP address)
 
-![nano web and db](https://i.imgur.com/8A3Mp5J.png)
+![nano web and db](https://i.imgur.com/ugw7Ahm.png))
 
 1.  Ping.
 ```
@@ -94,20 +94,24 @@ I should get a pong in return...
 
 To ping all nodes, use `sudo ansible all -m ping`.
 
+## Copy file from controller to node
+1. Create a test file using `sudo nano testfile.txt`.
+2. Copy file from controller to node
+   ```
+   sudo ansible web -m ansible.builtin.copy -a "src=/etc/ansible/test.txt dest=~/"
+   ```
+   Use the `sudo ansible` command, specify the node (web), use the Ansible copy module, enter the path of the source file and then the path of the destination.
+3. Check that it's worked
+   ```
+   sudo ansible web -a "ls -a"
+   ```
+
 ## Ansible Playbook
+Playbooks are written in YAML.
 
-Web VM IP: 34.244.45.248
+Create a YAML file for the playbook using `sudo nano nginx-playbook.yml`.
 
-DB VM IP: 3.253.143.243
 
-### Hosts file code
-```
-[web]
-ec2-instance ansible_host=34.244.45.248 ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/tech241.pem
-[db]
-ec2-instance ansible_host=3.253.143.243 ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/tech241.pem
-```
-### Playbook
 ```
 # YAML files start with --- 3 dashes
 # Create a playbook to install nginx in web node
@@ -127,5 +131,12 @@ ec2-instance ansible_host=3.253.143.243 ansible_user=ubuntu ansible_ssh_private_
 
 # ad hoc command to check the status
 ```
+Run the playbook
+```
+sudo ansible-playbook <playbook name>
+```
 
-Nginx is running on DB VM, not app VM.
+Check nginx is running
+```
+sudo ansible web -a "systemctl status nginx"
+```
