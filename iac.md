@@ -224,3 +224,51 @@ Whilst still in the controller, run the command to check mongodb is running in t
 ```
 sudo ansible db -a "systemctl status mongodb"
 ```
+
+## Automating provisioning/configuring MongDB in db instance
+
+***bindIP not currently changing. Troubleshooting***
+```
+---
+# create a playbook to install mongodb in db instance
+
+# inform of host
+- hosts: db
+
+# get logs
+  gather_facts: yes
+# admin access
+  become: true
+# provide tasks
+  tasks:
+# install mongodb
+  - name: Installing mongoDB
+    apt: pkg=mongodb state=present
+# ensure db is running
+
+# Change bindIP of mongodb.conf
+
+  tasks:
+  - name: Set bindIP
+    replace:
+      path: /etc/mongodb.conf
+      regexp: '^bind_ip'
+      line/: 'bind_ip: 0.0.0.0'
+    become: true
+
+# restart mongoDB
+  tasks:
+  - name: Restart MongoDB
+    service:
+      name: mongodb
+      state: restarted
+    beome: true
+
+# enable MongoDB
+  tasks:
+  - name: Enable MongoDB
+    service:
+      name: mongodb
+      enabled: yes
+    become: true
+```    
