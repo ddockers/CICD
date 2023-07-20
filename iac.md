@@ -185,4 +185,42 @@ sudo ansible web -a "systemctl status nginx"
     args:
       chdir: /home/ubuntu/app/app
 ```
-`sudo ansible-playbook nodejs.yml`
+To run the playbook: `sudo ansible-playbook nodejs.yml`
+
+## Playbook to install mongodb
+Ensure Nodejs is running on web VM.
+
+Create a YAML file in `/etc/ansible/`.
+```
+sudo nano mongodb-playbook.yaml
+```
+
+Use pseudocode to detail the steps, then write the commands.
+
+```
+
+---
+# create a playbook to install mongodb in db instance
+
+# inform of host
+- hosts: db
+
+# get logs
+  gather_facts: yes
+# admin access
+  become: true
+# provide tasks
+  tasks:
+# install mongodb
+  - name: Installing mongoDB
+    apt: pkg=mongodb state=present
+# ensure db is running
+```
+Run the playbook: `sudo ansible-playbook mongodb-playbook.yml`
+
+If there are errors while running, you can check where an what they are by adding `-vvv` at the end of the *run playbook* command.
+
+Whilst still in the controller, run the command to check mongodb is running in the db VM.
+```
+sudo ansible db -a "systemctl status mongodb"
+```
