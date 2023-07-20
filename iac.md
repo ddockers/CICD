@@ -151,8 +151,38 @@ sudo ansible web -a "systemctl status nginx"
 
   tasks:
   - name: Installing nodejs
-    apt: pkg=nodejs state=present
-  - name: Installing npm
-    apt: pkg=npm state=present
+    apt_key:
+      url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
+      state: present
+  - name: Clone repo
+    git:
+      repo: https://github.com/ddockers/tech241-sparta-app
+      dest: /home/ubuntu/app
+
+  - name: Install nodejs
+    apt:
+      name: nodejs
+      state: present
+      update_cache: yes
+  - name: install pm2
+    npm:
+      name: pm2
+      global: yes
+      state: present
+      version: "4.5.6"
+
+  - name: Install app dependencies
+    command: npm install
+    args:
+      chdir: /home/ubuntu/app/app/
+
+
+  - name: Stop PM2 processes
+    shell: pm2 kill
+
+  - name: Start the Node.js app
+    shell: pm2 start app.js
+    args:
+      chdir: /home/ubuntu/app/app
 ```
 `sudo ansible-playbook nodejs.yml`
