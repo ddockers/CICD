@@ -81,7 +81,7 @@ The user is Ubuntu, and the private key file can be found in the path at the end
 
 ![nano web and db](https://i.imgur.com/ugw7Ahm.png))
 
-1.  Ping.
+13.  Ping.
 ```
 sudo ansible web -m ping
 ```
@@ -90,6 +90,7 @@ sudo ansible db -m ping
 ```
 
 I should get a pong in return...
+
 ![Ping Pong](https://i.imgur.com/VrGmsAs.png)
 
 To ping all nodes, use `sudo ansible all -m ping`.
@@ -140,7 +141,7 @@ Check nginx is running
 ```
 sudo ansible web -a "systemctl status nginx"
 ```
-## PLaybook for installing Nodejs
+## Playbook for installing Nodejs
 `sudo nano nodejs.yml`
 ```
 ---
