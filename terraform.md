@@ -103,3 +103,13 @@ Run `terraform apply`
 **An EC2 instance has been created in AWS!**
 
 To destroy it, run `terraform destroy`.
+
+## Launching EC2 in VPC using Terraform
+
+Create VPC using instructions here: <https://github.com/ddockers/tech241-aws/blob/main/vpc.md>
+
+Create a new .tf file and include the the subnet ID and VPC SG ID:
+
+![Imgur](https://i.imgur.com/w75Zmi8.png)
+
+Run `terraform init`, `terraform plan` and `terraform apply` to launch the instance.
