@@ -11,6 +11,10 @@
 - It tracks resource changes and allows for easy rollback to previous configurations
 - It's open source
 
+## Terraform Infrastructure
+![Imgur](https://i.imgur.com/HqIYF5W.png)
+## How Terraform Links with Ansible
+![Imgur](https://i.imgur.com/6JT0ftW.png)
 ## Installation of Terraform
 <https://spacelift.io/blog/how-to-install-terraform>
 
