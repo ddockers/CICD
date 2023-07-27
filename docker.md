@@ -25,7 +25,7 @@ The Docker Engine API is accessed by sending HTTP requests to the Docker daemon.
 
 The API uses standard HTTP verbs such as GET, POST, PUT, and DELETE to perform operations on resources such as containers, images, and networks.
 
-## Image and Container Setup
+## Pulling an Image
 ![Docker Architecture](https://i.imgur.com/vZZ6XQP.png)
 
 Use `docker` to see a list of useful docker commands.
@@ -35,3 +35,44 @@ Use `docker` to see a list of useful docker commands.
 Entering `docker run hello-world` will allow the Docker daemon to get the image from the registry and run it in the local machine.
 
 ![Hello World](https://i.imgur.com/Hdq7HAg.png)
+
+Using `docker ps` lists the containers that are running.
+
+`docker ps -a` lists all containers.
+
+![docker ps](https://i.imgur.com/xoweAYw.png)
+
+
+## Running Nginx
+
+Create a repo in **Docker Hub**.
+
+We want to create a container with the Nginx image. Port 80 will need to be mapped with the localhost.
+
+```
+docker run -d -p 80:80 nginx
+```
+
+Going to `localhost` in the browser will take you to the default nginx page.
+
+This instance will be running in the background, so to stop it run:
+
+```
+docker stop <container id>
+```
+
+To start it up again, run `docker start <container id>`.
+
+## Interacting with the container
+This command allows you to ssh into the container.
+```
+docker exec -it <container id> sh
+```
+The container needs to have sudo and nano installed, so do `apt update`, `apt sudo install` and `apt nano install`.
+
+The container is hosting the nginx image. To locate the html file for the nginx home page, follow the path `/usr/share/nginx/html`.
+
+Use `nano index.html` to modify the file.
+
+Once the file has been modified, when refreshing the browser, the modifications should be displayed.
+
